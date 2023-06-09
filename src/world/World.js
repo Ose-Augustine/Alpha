@@ -2,6 +2,7 @@ import { createCamera } from './components/camera'
 import { createMesh } from './components/meshes';
 import { createLights } from './components/lights';
 import { createScene } from './components/scene';
+import { loadHumanoid } from './components/humanoid/humanoid';
 
 import { createControls } from './systems/controls';
 import { createRenderer } from './systems/renderer';
@@ -34,7 +35,9 @@ class World {
 
     }
 
-    async init() {}
+    async init() {
+        await loadHumanoid(); 
+    }
 
     render() {
         renderer.render(scene, camera); 
