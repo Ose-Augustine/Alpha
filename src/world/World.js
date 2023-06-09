@@ -36,7 +36,8 @@ class World {
     }
 
     async init() {
-        await loadHumanoid(); 
+        const { humanoid } = await loadHumanoid(); 
+        scene.add(humanoid)
     }
 
     render() {
