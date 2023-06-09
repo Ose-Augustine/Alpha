@@ -34,6 +34,8 @@ class World {
 
     }
 
+    async init() {}
+
     render() {
         renderer.render(scene, camera); 
     }    
