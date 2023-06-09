@@ -1,12 +1,12 @@
-import { WebGLRenderer } from "three";
+import { WebGLRenderer } from "three";  
 
 function createRenderer() {
     const renderer = new WebGLRenderer(
-        {antialias: true}
-    );
+        {antialias: true}, 
+    ); 
     renderer.useLegacyLights = true; 
 
-    return renderer; 
+    return renderer;
 }
 
 export { createRenderer }; 
