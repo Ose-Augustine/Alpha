@@ -9,4 +9,4 @@ function createMesh() {
     return mesh; 
 }
 
-export { createMesh }; 
+export { createMesh };
