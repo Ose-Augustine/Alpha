@@ -8,6 +8,7 @@ import { createControls } from './systems/controls';
 import { createRenderer } from './systems/renderer';
 import { Resizer } from './systems/Resizer';
 import { Loop } from './systems/loop';
+import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
 
 let scene; 
 let camera; 
@@ -36,9 +37,9 @@ class World {
     }
 
     async init() {
-        const { humanoid } = await loadHumanoid(); 
+        const humanoid = await loadHumanoid(); 
         scene.add(humanoid)
-    }
+     }
 
     render() {
         renderer.render(scene, camera); 
