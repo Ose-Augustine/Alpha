@@ -6,6 +6,9 @@ async function loadHumanoid() {
     const humanoidData = await loader.loadAsync('/assets/human.fbx');
     // Scale down group
     humanoidData.scale.setScalar(0.1);
+    
+    const children = setupModel(humanoidData); 
+    console.log(humanoidData)
     return humanoidData ; 
 }
 export { loadHumanoid }; 
