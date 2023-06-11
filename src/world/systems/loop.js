@@ -28,9 +28,9 @@ class Loop {
 
         // Execute the tick method of each object 
         // with animation 
-        // for(const object of this.updatables) {
-        //     object.tick(delta);
-        // }
+        for(const object of this.updatables) {
+            object.tick(delta);
+        }
 
     }
 }

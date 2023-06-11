@@ -14,7 +14,6 @@ let scene;
 let camera; 
 let renderer; 
 let loop; 
-
 class World { 
     constructor(container) {
         camera = createCamera(); 
@@ -28,7 +27,7 @@ class World {
         const meshGroup = createMesh(); 
 
 
-        loop.updatables.push(controls, meshGroup)
+        loop.updatables.push(controls)
 
         scene.add(hemispherelight, directionLight, meshGroup); 
         
@@ -37,8 +36,9 @@ class World {
     }
 
     async init() {
-        const humanoid = await loadHumanoid(); 
-        scene.add(humanoid)
+        const data = await loadHumanoid(); 
+        loop.updatables.push(data)
+        scene.add(data)
      }
 
     render() {

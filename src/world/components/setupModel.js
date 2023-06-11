@@ -1,4 +1,4 @@
-import { TextureLoader } from "three";
+import { TextureLoader, AnimationMixer } from "three";
 
 function setupModel(data) {
     // Access the skinned mesh of the group
@@ -6,11 +6,17 @@ function setupModel(data) {
     // Create texture loader
     const textureLoader = new TextureLoader(); 
     // Load the texture
-    const texture = textureLoader.load('/assets/Aluminum-Scuffed_bl/Aluminum-Scuffed_metallic.png'); 
+    const texture = textureLoader.load('/assets/textures/metallic.png'); 
     // Change the model's texture
     model.material.map = texture; 
 
-    console.log(model)
+    // Animation
+    const mixer = new AnimationMixer(data)
+    const action = mixer.clipAction(data.animations[1])
+    action.play();
+    
+    data.tick = delta => mixer.update(delta)
+
     return model;
 }
 
