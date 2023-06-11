@@ -15,7 +15,11 @@ function setupModel(data) {
     const action = mixer.clipAction(data.animations[1])
     action.play();
     
-    data.tick = delta => mixer.update(delta)
+    // Transforms
+    data.rotation.y -= Math.PI / 2 
+    data.position.x = 50
+
+    data.tick = delta =>  mixer.update(delta)
 
     return model;
 }
