@@ -3,12 +3,13 @@ import { createMesh } from './components/meshes';
 import { createLights } from './components/lights';
 import { createScene } from './components/scene';
 import { loadHumanoid } from './components/humanoid/humanoid';
+import { createTexts } from './components/projector/text';
+import { Cube } from './components/projector/Cube';
 
 import { createControls } from './systems/controls';
 import { createRenderer } from './systems/renderer';
 import { Resizer } from './systems/Resizer';
 import { Loop } from './systems/loop';
-import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
 
 let scene; 
 let camera; 
@@ -25,26 +26,26 @@ class World {
         const controls = createControls(camera, renderer.domElement); 
         const {hemispherelight, directionLight} = createLights();
         const meshGroup = createMesh(); 
+        const cube = new Cube(); 
 
 
         loop.updatables.push(controls)
 
-        scene.add(hemispherelight, directionLight, meshGroup); 
-        
+        scene.add(hemispherelight, directionLight); 
         const resizer = new Resizer (container, camera, renderer);
 
     }
 
     async init() {
         const data = await loadHumanoid(); 
+        const text = await createTexts(); 
         loop.updatables.push(data)
-        scene.add(data)
+        scene.add(data, text)
      }
 
     render() {
         renderer.render(scene, camera); 
-    }    
-
+    }
     start() {
         loop.start();
     }
