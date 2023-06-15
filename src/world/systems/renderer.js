@@ -5,6 +5,7 @@ function createRenderer() {
         {antialias: true}, 
     ); 
     renderer.useLegacyLights = true; 
+    renderer.shadowMap.enabled = true;
 
     return renderer;
 }

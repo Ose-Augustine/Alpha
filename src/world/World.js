@@ -24,23 +24,25 @@ class World {
         container.append(renderer.domElement); 
 
         const controls = createControls(camera, renderer.domElement); 
-        const {hemispherelight, directionLight} = createLights();
-        const meshGroup = createMesh(); 
+        const {hemispherelight, directionLight, spotLight} = createLights();
+        const background = createMesh(); 
         const cube = new Cube(); 
 
 
         loop.updatables.push(controls)
 
-        scene.add(hemispherelight, directionLight); 
+        // scene.add(hemispherelight, directionLight); 
+        scene.add(spotLight, background); 
         const resizer = new Resizer (container, camera, renderer);
 
     }
 
     async init() {
-        const data = await loadHumanoid(); 
+        //const data = await loadHumanoid(); 
         const text = await createTexts(); 
-        loop.updatables.push(data)
-        scene.add(data, text)
+        text.position.x = -38
+        //loop.updatables.push(data)
+        scene.add(text)
      }
 
     render() {
