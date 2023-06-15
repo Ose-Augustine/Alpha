@@ -14,7 +14,7 @@ function createMesh() {
 
     foreground.rotation.x = -Math.PI / 2;
     foreground.receiveShadow = true;
-    //background.scale.multiplyScalar(4)
+    foreground.scale.multiplyScalar(3)
 
     return foreground; 
 }

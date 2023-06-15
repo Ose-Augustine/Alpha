@@ -29,7 +29,7 @@ class World {
         const cube = new Cube(); 
 
 
-        loop.updatables.push(controls)
+        loop.updatables.push(controls, spotLight)
 
         // scene.add(hemispherelight, directionLight); 
         scene.add(spotLight, background); 
