@@ -7,7 +7,7 @@ function createMesh() {
     const background = new Mesh(geometry, material)
     const foreground = background.clone(); 
 
-    background.position.z = -100;
+    background.position.z = -50;
     background.position.y = 40
     background.scale.x = 6
     background.scale.y = 2
@@ -16,7 +16,10 @@ function createMesh() {
     foreground.receiveShadow = true;
     foreground.scale.multiplyScalar(3)
 
-    return foreground; 
+    return { 
+        background,
+        foreground
+    }; 
 }
 
 export { createMesh };

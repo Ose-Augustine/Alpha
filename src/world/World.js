@@ -1,3 +1,4 @@
+
 import { createCamera } from './components/camera'
 import { createMesh } from './components/meshes';
 import { createLights } from './components/lights';
@@ -10,6 +11,7 @@ import { createControls } from './systems/controls';
 import { createRenderer } from './systems/renderer';
 import { Resizer } from './systems/Resizer';
 import { Loop } from './systems/loop';
+import { animate } from './systems/animations';
 
 let scene; 
 let camera; 
@@ -24,25 +26,25 @@ class World {
         container.append(renderer.domElement); 
 
         const controls = createControls(camera, renderer.domElement); 
-        const {hemispherelight, directionLight, spotLight} = createLights();
-        const background = createMesh(); 
+        const {hemispherelight, directionLight, introLight, backgroundLight} = createLights();
+        const {background, foreground} = createMesh(); 
         const cube = new Cube(); 
+        animate(introLight);
 
-
-        loop.updatables.push(controls, spotLight)
+        loop.updatables.push(controls);
 
         // scene.add(hemispherelight, directionLight); 
-        scene.add(spotLight, background); 
+        scene.add(introLight,backgroundLight, background, foreground); 
         const resizer = new Resizer (container, camera, renderer);
 
     }
 
     async init() {
-        //const data = await loadHumanoid(); 
+        const data = await loadHumanoid(); 
         const text = await createTexts(); 
         text.position.x = -38
-        //loop.updatables.push(data)
-        scene.add(text)
+        loop.updatables.push(data)
+        scene.add(data, text)
      }
 
     render() {

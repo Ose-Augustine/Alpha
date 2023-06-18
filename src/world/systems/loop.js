@@ -1,4 +1,5 @@
 import { Clock } from "three";
+import * as TWEEN from '@tweenjs/tween.js'
 
 const clock = new Clock();
 
@@ -12,6 +13,7 @@ class Loop {
 
     start() {
         this.renderer.setAnimationLoop(() => {
+            TWEEN.update()
             this.tick(); 
 
             this.renderer.render(this.scene, this.camera); 
