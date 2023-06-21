@@ -26,15 +26,20 @@ class World {
         container.append(renderer.domElement); 
 
         const controls = createControls(camera, renderer.domElement); 
-        const {hemispherelight, directionLight, introLight, backgroundLight} = createLights();
+        const {hemispherelight, directionLight, introLight, backgroundLight, modelLIght} = createLights();
         const {background, foreground} = createMesh(); 
         const cube = new Cube(); 
-        animate(introLight);
 
-        loop.updatables.push(controls);
+        const start = {x:-40, y:15, z:3}
+        const target = {x:80, y:15, z:3}
+        const intro = animate(start, target, 20000, introLight);
+       // intro.delay(7000)
+        intro.start(); 
+
+        //loop.updatables.push(controls);
 
         // scene.add(hemispherelight, directionLight); 
-        scene.add(introLight,backgroundLight, background, foreground); 
+        scene.add(introLight,backgroundLight,modelLIght, background, foreground); 
         const resizer = new Resizer (container, camera, renderer);
 
     }
@@ -44,6 +49,7 @@ class World {
         const text = await createTexts(); 
         text.position.x = -38
         loop.updatables.push(data)
+        console.log(loop.updatables)
         scene.add(data, text)
      }
 
